@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setlist</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Setlist</h1>
+  <p class="sub" id="count"></p>
+
+  <nav>
+    <button type="button" data-view="list" aria-current="page">View songs</button>
+    <button type="button" data-view="add">Add song</button>
+    <button type="button" data-view="playlists">Playlists</button>
+  </nav>
+
+  <section id="view-add" hidden>
+  <form id="add-form">
+    <input name="title" placeholder="Title" required>
+    <input name="artist" placeholder="Artist" required>
+    <input name="genre" placeholder="Genre" required>
+    <input name="bpm" type="number" min="1" placeholder="BPM" required>
+    <button class="primary" type="submit">Add song</button>
+  </form>
+  </section>
+
+  <section id="view-list">
+
+  <input class="search" id="search" type="search" placeholder="Filter by title, artist or genre">
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-key="id">#</th>
+          <th data-key="title">Title</th>
+          <th data-key="artist">Artist</th>
+          <th data-key="genre">Genre</th>
+          <th data-key="bpm">BPM</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  </section>
+  <section id="view-playlists" hidden>
+    <div class="section-head">
+      <h2>Playlists</h2>
+      <button class="primary" id="add-playlist-btn" type="button">Add Playlist</button>
+    </div>
+    <form id="playlist-form" hidden>
+      <input name="name" placeholder="Playlist name" required>
+      <button class="primary" type="submit">Save</button>
+      <button type="button" id="cancel-playlist">Cancel</button>
+    </form>
+    <ul id="playlists"></ul>
+  </section>
+  <p id="msg" role="alert"></p>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
