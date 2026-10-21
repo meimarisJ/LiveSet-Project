@@ -1,4 +1,4 @@
-# LiveSet — Work in Progress 🎸
+# LiveSet — Work in Progress 
 
 I'm currently building **LiveSet**, a Python app for organizing songs, playlists, and lyrics.
 
