@@ -20,9 +20,9 @@
   <section id="view-add" hidden>
   <form id="add-form">
     <input name="title" placeholder="Title" required>
-    <input name="artist" placeholder="Artist" required>
-    <input name="genre" placeholder="Genre" required>
-    <input name="bpm" type="number" min="1" placeholder="BPM" required>
+    <input name="artist" placeholder="Artist">
+    <input name="genre" placeholder="Genre">
+    <input name="bpm" type="number" min="1" placeholder="BPM">
     <button class="primary" type="submit">Add song</button>
   </form>
   </section>
@@ -59,6 +59,36 @@
     </form>
     <ul id="playlists"></ul>
   </section>
+
+<section id="view-playlist-details" hidden>
+  <div class="section-head">
+    <h2 id="playlist-title"></h2>
+
+    <div>
+      <button id="add-song-to-playlist" type="button">
+        Add Song
+      </button>
+
+      <button id="back-to-playlists" type="button">
+        Back to Playlists
+      </button>
+    </div>
+  </div>
+
+  <div id="add-song-picker" hidden>
+    <select id="available-songs">
+      <option value="">Choose a song...</option>
+    </select>
+
+    <button id="confirm-add-song" type="button">Add</button>
+    <button id="cancel-add-song" type="button">Cancel</button>
+  </div>
+
+  <ul id="playlist-tracks"></ul>
+</section>
+
+
+
   <p id="msg" role="alert"></p>
 </main>
 

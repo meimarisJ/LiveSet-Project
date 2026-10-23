@@ -133,7 +133,38 @@ def remove_playlist_from_db(playlist_id):
     return True
 
 def add_track_to_playlist_in_db(playlist_id,track_id):
-    cursor.execute("""
-    INSERT INTO playlist_tracks (playlist_id, track_id)
-    VALUES(?,?) """,(playlist_id,track_id))
+    cursor.execute("Select * FROM playlists WHERE id = ?",(playlist_id,))
+    playlist = cursor.fetchone()
+
+    if not playlist:
+        return "Playlist not found."
+
+    cursor.execute("SELECT * FROM tracks WHERE id = ?",(track_id,))
+    track = cursor.fetchone()
+
+    if not track:
+        return "Track not found."
+
+    cursor.execute("INSERT INTO playlist_tracks (playlist_id, track_id) VALUES (?,?)",(playlist_id,track_id))
     connection.commit()
+
+    return "Track added to playlist."
+
+def get_tracks_from_playlist_from_db(playlist_id):
+    cursor.execute("""
+    SELECT tracks.* FROM tracks JOIN playlist_tracks ON tracks.id = playlist_tracks.track_id 
+    WHERE playlist_tracks.playlist_id = ? """,(playlist_id,))
+
+    songs = cursor.fetchall()
+    if not songs:
+        return False
+    return songs
+
+def remove_track_from_playlist_in_db(playlist_id,track_id):
+    cursor.execute("""
+    DELETE FROM playlist_tracks WHERE playlist_id = ? AND track_id = ? """,(playlist_id,track_id))
+    connection.commit()
+    result= cursor.rowcount
+    if not result:
+        return False
+    return True
